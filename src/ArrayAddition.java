@@ -35,6 +35,7 @@ public class ArrayAddition {
 			for(int i=0;i<result;i++)
 				System.out.println(iSumArray[i]);
 			        System.out.println("the output is done");
+			        System.out.println("the output is done second time");
 			
 		}
 	
