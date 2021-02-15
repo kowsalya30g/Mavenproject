@@ -15,6 +15,7 @@
             <manifest>
               <addClasspath>true</addClasspath>
               <classpathPrefix>lib/</classpathPrefix>
+              <mainClass>ArrayAddition</mainClass>
              
                 </manifest>
           </archive>
