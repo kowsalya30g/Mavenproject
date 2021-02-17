@@ -1,47 +1,26 @@
-pipeline{
-  agent 
-  {
-    docker{
-     image 'maven:3-alpine'
-        args '-v/.m2:/root/.m2'
-  }
-}
-
-  stages {
-    stage('MavenVertion'){
-      steps{
-        echo 'Maven Vaersion'
-        sh 'mvn -version'
-       
+pipeline {
+  agent{
+    docker {
+      image 'maven:3-alpine'
+      args '-v /root/.m2:/root/.m2'
       }
      }
-    stage('Clean'){
-      steps{
-        echo 'Clean'
-        sh 'mvn clean'
-       
-      }
-     }
-    stage('Compile'){
-      steps{
-        echo 'Compile'
-        sh 'mvn compile'
-        
-      }
-     }
-    stage('package'){
-      steps{
-        echo 'Packing '
-        sh 'mvn -B -DskipTests clean package'
-        
-      }
-     }
-    stage('Test'){
-      steps{
-        echo 'Maven test'
-        sh 'mvn test'
-      }
+     
+     stages{
+       stage('Build'){
+        steps {
+                withSonarQubeEnv('Sonarservice') {
+                 
+                        sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar'
+                    
+                }
+            } 
+       }
+        stage('Test'){
+         steps{
+           sh 'mvn test'
+           }
+        } 
       
-  }
-  }
-}
+      }
+     }
