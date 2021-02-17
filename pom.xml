@@ -3,25 +3,26 @@
   <groupId>com.arrayaddition.example</groupId>
   <artifactId>ConvertedMaven</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <build>
+   <build>
     <plugins>
       <plugin>
         <!-- Build an executable JAR -->
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
         <version>3.0.2</version>
-        <configuration>
-          <archive>
-            <manifest>
-              <addClasspath>true</addClasspath>
-              <classpathPrefix>lib/</classpathPrefix>
-              <mainClass>ArrayAddition</mainClass>
-             
-                </manifest>
-          </archive>
-        </configuration>
       </plugin>
+        <plugin>
+        <groupId>org.sonarsource.scanner.maven</groupId>
+        <artifactId>sonar-maven-plugin</artifactId>
+        <version>3.7.0.1746</version>
+      </plugin>
+       
     </plugins>
   </build>
- </project>
+  <properties>
+  <sonar.projectKey>Mavenproject1</sonar.projectKey>
+  <sonar.organization>kowsalya30g</sonar.organization>
+  <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+</properties>
+   </project>
 
